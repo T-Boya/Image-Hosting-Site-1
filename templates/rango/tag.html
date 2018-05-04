@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>YOYOYO</title>
+    </head>
+    <body>
+    <h1>YOYOYO</h1>
+    <div>
+        <div>
+            {% if tag %}
+                <h1>{{ tag.name }}</h1>
+                {% if pages %}
+                    <ul>
+                        {% for page in pages %}
+                        <li><a href = "{{ page.url }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <strong>No pictures have been submitted with this Tag!</strong>
+                {% endif %}
+            {% else %}
+            <h1>This Tag does not exist</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <a href="/rango/about/">About</a><br />
+        <img src = "{% static 'images/cow.jpg' %}" alt = "your mom" style = "height: 50vh; width: 50vw;">
+    </div>
+    </body>
+</html>
