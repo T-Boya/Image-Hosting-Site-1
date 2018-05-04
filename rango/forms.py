@@ -1,7 +1,7 @@
 from django import forms
 from rango.models import Tag, Photo
 
-class TagForm(forms.ModelForm)
+class TagForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
     help_text="Please enter a tag name.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
@@ -9,8 +9,8 @@ class TagForm(forms.ModelForm)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
-    model = Tag
-    fields = ('name',)
+        model = Tag
+        fields = ('name',)
 
 class PhotoForm(forms.ModelForm):
     title = forms.CharField(max_length=128,
@@ -19,6 +19,15 @@ class PhotoForm(forms.ModelForm):
     help_text="Please enter the URL of the page.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
-class Meta:
-    model = Photo
-    exclude = ('tag',)
+    class Meta:
+        model = Photo
+        exclude = ('tag',)
+    
+    def clean(self):
+    cleaned_data = self.cleaned_data
+    url = cleaned_data.get('url')
+
+    if url and not url.startswith('http://'):
+    url = 'http://' + url
+    cleaned_data['url'] = url
+    return cleaned_data

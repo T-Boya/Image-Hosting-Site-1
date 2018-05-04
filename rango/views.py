@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Tag, Location, Photo
-from rango.forms import TagForm
+from rango.forms import TagForm, PhotoForm
 
 def index (request):
     tag_list = Tag.objects.order_by('-likes')[:5]    
@@ -28,13 +28,34 @@ def show_tag(request, tag_name_slug):
 
     return render(request, 'rango/tag.html', context_dict)
 
-def add_tag(request)
+def add_tag(request):
     form = TagForm()
-    if request.method == 'Post':
-        form = TagForm(request.post)
+    if request.method == 'POST':
+        form = TagForm(request.POST)
         if form.is_valid():
-            form.save(commit = True)
+            form.save(commit=True)
             return index(request)
         else:
             print(form.errors)
-    return render(request, 'rango.add_tag.html', {'form': form})
+    return render(request, 'rango/add_tag.html', {'form': form})
+
+def add_photo(request, category_name_slug):
+    try:
+        tag = Tag.objects.get(slug=tag_name_slug)
+    except Tag.DoesNotExist:
+        tag = None
+
+    form = PhotoForm()
+    if request.method == 'POST':
+        form = PhotoForm(request.POST)
+        if form.is_valid():
+            if tag:
+                photo = form.save(commit=False)
+                photo.category = category
+                photo.views = 0
+                photo.save()
+                return show_tag(request, tag_name_slug)
+    else:
+        print(form.errors)
+    context_dict = {'form':form, 'tag': tag}
+    return render(request, 'rango/add_photo.html', context_dict)
