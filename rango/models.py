@@ -15,16 +15,15 @@ class Tag(models.Model):
         return self.name
 
 class Location(models.Model):
-    title = models.CharField(max_length=128, unique = True)
+    title = models.CharField(max_length=128, unique = True, blank = True)
 
 class Photo(models.Model):
     # tag = models.ForeignKey(Category)
-    location = models.ForeignKey(Location)
+    # location = models.ForeignKey(Location, blank = True)
     tag = models.ManyToManyField(Tag)
     title = models.CharField(max_length=128)
-    url = models.URLField()
+    image = models.ImageField(upload_to = 'Stinagram/%Y/%m/%d')
     views = models.IntegerField(default=0)
-    location = models.CharField(max_length=128)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
