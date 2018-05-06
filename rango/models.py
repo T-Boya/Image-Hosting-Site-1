@@ -18,9 +18,9 @@ class Location(models.Model):
     title = models.CharField(max_length=128, unique = True, blank = True)
 
 class Photo(models.Model):
-    # tag = models.ForeignKey(Category)
     # location = models.ForeignKey(Location, blank = True)
-    tag = models.ManyToManyField(Tag)
+    # tag = models.ManyToManyField(Tag)
+    tag = models.ForeignKey(Tag)
     title = models.CharField(max_length=128)
     image = models.ImageField(upload_to = 'Stinagram/%Y/%m/%d')
     views = models.IntegerField(default=0)

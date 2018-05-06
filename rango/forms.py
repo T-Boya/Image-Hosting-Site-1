@@ -14,7 +14,8 @@ class TagForm(forms.ModelForm):
 
 class PhotoForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Please enter the title of the photo.")
-    image = forms.FileField(label='Select an image file', help_text='max. 42 megabytes')
+    image = forms.FileField(label='Select an image file', help_text='File too large')
+    tag = forms.CharField(max_length=128)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:

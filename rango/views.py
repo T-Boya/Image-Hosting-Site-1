@@ -28,34 +28,34 @@ def show_tag(request, tag_name_slug):
 
     return render(request, 'rango/tag.html', context_dict)
 
-def add_tag(request):
-    form = TagForm()
-    if request.method == 'POST':
-        form = TagForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            return index(request)
-        else:
-            print(form.errors)
-    return render(request, 'rango/add_tag.html', {'form': form})
+# def add_tag(request):
+#     form = TagForm()
+#     if request.method == 'POST':
+#         form = TagForm(request.POST)
+#         if form.is_valid():
+#             form.save(commit=True)
+#             return index(request)
+#         else:
+#             print(form.errors)
+#     return render(request, 'rango/add_tag.html', {'form': form})
 
-def add_photo(request, tag_name_slug):
-    try:
-        tag = Tag.objects.get(slug=tag_name_slug)
-    except Tag.DoesNotExist:
-        tag = None
+def add_photo(request):
+    # try:
+    #     tag = Tag.objects.get(slug=tag_name_slug)
+    # except Tag.DoesNotExist:
+    #     tag = None
 
     form = PhotoForm()
     if request.method == 'POST':
         form = PhotoForm(request.POST)
         if form.is_valid():
-            if tag:
-                photo = form.save(commit=False)
-                photo.tag = tag
-                photo.views = 0
-                photo.save()
-                return show_tag(request, tag_name_slug)
+            # if tag:
+            photo = form.save(commit=False)
+            photo.tag = tag
+            photo.views = 0
+            photo.save()
+                # return show_tag(request, tag_name_slug)
     else:
         print(form.errors)
-    context_dict = {'form':form, 'tag': tag}
+    context_dict = {'form':form}
     return render(request, 'rango/add_photo.html', context_dict)

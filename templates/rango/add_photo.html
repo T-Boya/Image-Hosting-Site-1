@@ -4,9 +4,7 @@
         <title>YOYOYO</title>
     </head>
     <body>
-        <div>
-            {% if tag %}
-            
+        <div>            
             <h1>Add a Photo to {{tag.name}}</h1>
     
             <form id="photo_form" method="post" action="/rango/tag/{{ tag.slug }}/add_photo/">
@@ -24,10 +22,6 @@
     
                 <input type="submit" name="submit" value="Add Photo" />
             </form>
-            
-            {% else %}
-                The specified tag does not exist!
-            {% endif%}
             </div>	
     </body>
 </html>
