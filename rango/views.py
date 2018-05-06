@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Tag, Location, Photo
 from rango.forms import TagForm, PhotoForm
+from django.forms.formsets import formset_factory
 
 def index (request):
     tag_list = Tag.objects.order_by('-likes')[:5]    
@@ -19,7 +20,8 @@ def show_tag(request, tag_name_slug):
     context_dict = {}
     try:
         tag = Tag.objects.get(slug=tag_name_slug)
-        photos = Photo.objects.filter(tag=tag)
+        # photos = Photo.objects.filter(tag=tag)
+        photos = Photo.objects.all()
         context_dict['photos'] = photos
         context_dict['tag'] = tag
     except Tag.DoesNotExist:
@@ -40,22 +42,22 @@ def show_tag(request, tag_name_slug):
 #     return render(request, 'rango/add_tag.html', {'form': form})
 
 def add_photo(request):
-    # try:
-    #     tag = Tag.objects.get(slug=tag_name_slug)
-    # except Tag.DoesNotExist:
-    #     tag = None
-
-    form = PhotoForm()
+    PhotoFormSet = formset_factory(PhotoForm, extra=0,
+                                    min_num=1, validate_min=True)
     if request.method == 'POST':
-        form = PhotoForm(request.POST)
-        if form.is_valid():
-            # if tag:
-            photo = form.save(commit=False)
-            photo.tag = tag
-            photo.views = 0
-            photo.save()
-                # return show_tag(request, tag_name_slug)
+        form = TagForm(request.POST)
+        formset = PhotoFormSet(request.POST)
+        if all([form.is_valid(), formset.is_valid()]):
+            poll = form.save()
+            for inline_form in formset:
+                if inline_form.cleaned_data:
+                    choice = inline_form.save(commit=False)
+                    choice.question = poll
+                    choice.save()
+            return render(request, 'rango/index.html', {})
     else:
-        print(form.errors)
-    context_dict = {'form':form}
-    return render(request, 'rango/add_photo.html', context_dict)
+        form = TagForm()
+        formset = PhotoFormSet()
+
+    return render(request, 'rango/add_photo.html', {'form': form,
+                                                   'formset': formset})
