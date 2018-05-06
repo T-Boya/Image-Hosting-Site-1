@@ -1,0 +1,105 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("bg6.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+.body {
+    padding: 0;
+    margin: 0;
+}
+/* NAVIGATION BAR */
+.navbar.navbar-default.navbar-fixed-top{
+    opacity: 0.7;
+}
+.navbar-brand img {
+    height: 2vh;
+}
+/* NAVIGATION BAR */
+.column {
+    float: left;
+    width: 22.5%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.row {
+    padding-top: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    /* border-radius: 10px; */
+    margin-bottom: 30px;
+    /* background-color: rgba(0, 0, 0, 0); */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+    background-color: rgba(62, 63, 59, 0.493);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.card_img {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    /* max-width: 28vw;
+    max-height: 37vh;
+    min-width: 27vw;
+    min-height: 37vh; */
+}
+
+.title {
+    text-align: center;
+}
+
+/* BOTTOM */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.jumbotron {
+    /* align-self: left;
+    margin-top: 20vh;
+    margin-bottom: 0;
+    padding: 0; */
+    background-color: rgba(255, 255, 255, 0.342);
+    width: 100vw;
+    max-height: 8vh;
+    float: left;
+    text-align: center;
+    height: 8vh;
+    color: rgba(0, 0, 0, 0.315);
+    /* position: fixed; */
+}
+
+.jumbotron p{
+    color: rgba(0, 0, 0, 0.329);  
+}
+
+.jumbotron a{
+color: rgba(0, 0, 0, 0.329);
+}
+
+.jumbotron a:hover{
+    text-decoration: none;
+    color: black;
+}
+/* BOTTOM */
