@@ -17,8 +17,7 @@ def index (request):
         context_dict = {'tags': tag_list, 'photos' : photo_list}
     return render(request, 'rango/index.html', context=context_dict)
 
-def rango (request):
-    return HttpResponse('RRRRRRRRRRANGO!, <a href = "http://127.0.0.1:8000/rango/about/">about</a>')
+
 
 def about (request):
     # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
