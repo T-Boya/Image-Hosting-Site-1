@@ -3,9 +3,15 @@ from django.http import HttpResponse
 from rango.models import Tag, Location, Photo
 from rango.forms import TagForm, PhotoForm
 
-def index (request):
+def base (request):
     tag_list = Tag.objects.order_by('-likes')[:5]    
     context_dict = {'tags': tag_list}
+    return render(request, 'rango/index.html', context=context_dict)
+
+def index (request):
+    tag_list = Tag.objects.order_by('-likes')[:5]  
+    photo_list = Photo.objects.order_by('-views')[:3]  
+    context_dict = {'tags': tag_list, 'photos' : photo_list}
     return render(request, 'rango/index.html', context=context_dict)
 
 def rango (request):

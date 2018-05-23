@@ -9,7 +9,7 @@
 		       
                 <h1>Add a Photo to {{tag.name}}</h1>
     
-            <form id="photo_form" method="post" action="/rango/tag/{{ tag.slug }}/add_photo/">
+            <form id="photo_form" method="post" action="/tag/{{ tag.slug }}/add_photo/">
     
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}

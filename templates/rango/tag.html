@@ -14,16 +14,15 @@
     <!-- ROW -->
         <div class="row">
             {% for photo in photos %}
-
             <!-- COLUMN 1 -->
             <div class="column">
 
                 <!-- CARD -->
                 <div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0);">
-                    <img src="{{ stinagram.image.url }}" alt="{{ photo.title }}" style="width:100%" class = "card_img">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.title }}" style="width:100%" class = "card_img">
                     <div class="container">
-                      <h4><b><a href = "{{ rango.photo.url }}" class = "title">{{ photo.title }}</a></b></h4> 
-                      <p>{{ photo.view }}</p>
+                      <h4><b><a href = "{{ photo.image.url }}" class = "title">{{ photo.title }}</a></b></h4> 
+                      <p>{{ photo.views }} views</p>
                       <p>published: {{ photo.pub_date }}</p> 
                     </div>
                   </div>

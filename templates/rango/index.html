@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
-
-<html>
-    <head>
-        <title>YOYOYO</title>
-    </head>
-    <body>
-    <h1>YOYOYO</h1>
-    <div>
+{% block content %}
         <div>
             {% if tags %}
-            <ul>
+             <!-- ROW -->
+            <div class="row">
             {% for tag in tags %}
-            <li>
-                <a href = "/rango/tag/{{ tag.slug }}"><h1>{{ tag.name }}</h1></a>
-                <p>{{ tag.likes }}</p>
-            </li>
+            <!-- COLUMN 1 -->
+            <div class="column">
+
+                <!-- CARD -->
+                <div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0);">
+                    <div class = "images">
+                    {% for photo in photos %}
+                    <img src="{{ photo.image.url }}" alt="Avatar" style="width:100%" class = "big_card_img">
+                    {% endfor %}
+                    </div>
+                    <div class="container align-self-end">
+                      <h4><a href = "/tag/{{ tag.slug }}"><b>{{ tag.name }}</b></a></h4> 
+                    </div>
+                  </div>
+                  <!-- CARD -->
+
+            </div> <!-- END COLUMN -->
             {% endfor %}
-            </ul>
             {% else %}
             <strong>There are no tags. Be the first to make one!</strong>
             {% endif %}
         </div>
     </div>
-    <a href="/rango/add_tag/">Create a new Tag</a><br />
-    <div>
-        <a href="/rango/about/">About</a><br />
-        <img src = "{% static 'images/cow.jpg' %}" alt = "your mom" style = "height: 50vh; width: 50vw;">
-    </div>
-    </body>
-</html>
+{% endblock %}
