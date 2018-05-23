@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rango.models import Tag, Photo
+from rango.models import Tag, Photo, Location
 
 # Register your models here.
 class PageAdmin(admin.ModelAdmin):
@@ -12,3 +12,5 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(Photo)
 # admin.site.register(Tag, TagAdmin)
 admin.site.register(Tag)
+
+admin.site.register(Location)

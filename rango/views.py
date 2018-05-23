@@ -67,8 +67,17 @@ def view_photos(request):
     return render(request, 'rango/view_photos.html', context=context_dict)
 
 def search(request):
-    return render(request, 'rango/search.html',)
+    if 'location' in request.GET and request.GET["location"]:
+        query = request.GET.get("location")
+        print(query)
+        photos = Photo.search(query)
+        print(photos)
+        output = f"{query}"
+        print(output)
 
-# def about (request):
-#     # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
-#         return render(request, 'rango/about.html')
+        return render(request,'rango/search.html',{"output":output, "photos":photos})
+
+    else:
+        message = "You haven't searched for anything"
+        return render(request, 'rango/search.html',{"message":message})
+    return render(request, 'rango/search.html',)
