@@ -9,9 +9,12 @@ def base (request):
     return render(request, 'rango/index.html', context=context_dict)
 
 def index (request):
-    tag_list = Tag.objects.order_by('-likes')[:5]  
-    photo_list = Photo.objects.order_by('-views')[:3]  
-    context_dict = {'tags': tag_list, 'photos' : photo_list}
+    tag_list = Tag.objects.order_by('-likes')[:5]
+    for tag in tag_list:
+        photos = Photo.objects.filter(tag=tag)
+        photo_list = photos.order_by('-views')[:3]  
+        # photo_list = Photo.objects.order_by('-views')[:3]  
+        context_dict = {'tags': tag_list, 'photos' : photo_list}
     return render(request, 'rango/index.html', context=context_dict)
 
 def rango (request):
@@ -66,3 +69,8 @@ def add_photo(request, tag_name_slug):
         print(form.errors)
     context_dict = {'form':form, 'tag':tag}
     return render(request, 'rango/add_photo.html', context_dict)
+
+def view_photos(request):
+    photo_list = Photo.objects.all() 
+    context_dict = {'photos' : photo_list}
+    return render(request, 'rango/view_photos.html', context=context_dict)

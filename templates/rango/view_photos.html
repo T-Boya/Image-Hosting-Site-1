@@ -1,0 +1,31 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <div>
+            {% if photos %}
+             <!-- ROW -->
+            <div class="row">
+            {% for photo in photos %}
+            <!-- COLUMN 1 -->
+            <div class="column" style:"margin-bottom: 30px;">
+
+                <!-- CARD -->
+                <a href=""><div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0);">
+                    <div class = "images" style="overflow: hidden">
+                    <img src="{{ photo.image.url }}" alt="Avatar" style="height:100%" class = "card_img">
+                    </div>
+                    <div class="container align-self-end" style="min-height: 70px;">
+                        <h4>{{ photo.title }},</h5><p>{{ photo.pub_date }}</p>
+                      <h4><a href = "/tag/{{ tag.slug }}"><b>{{ tag.name }}</b></a></h4> 
+                    </div>
+                  </div></a>
+                  <!-- CARD -->
+
+            </div> <!-- END COLUMN -->
+            {% endfor %}
+            {% else %}
+            <strong>There are no photos. Be the first to post one!</strong>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
