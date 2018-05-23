@@ -17,8 +17,6 @@ def index (request):
         context_dict = {'tags': tag_list, 'photos' : photo_list}
     return render(request, 'rango/index.html', context=context_dict)
 
-
-
 # def about (request):
 #     # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
 #         return render(request, 'rango/about.html')
@@ -34,7 +32,6 @@ def show_tag(request, tag_name_slug):
     except Tag.DoesNotExist:
         context_dict['photos'] = None
         context_dict['tag'] = None
-
     return render(request, 'rango/tag.html', context_dict)
 
 def add_tag(request):
