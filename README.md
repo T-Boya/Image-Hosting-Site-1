@@ -1,7 +1,7 @@
 # Tinashe Osewe's Image Hosting Site
 
 ## Description
-A photo display website that allows users to upload photos, tag them, add locations and search for them.
+A photo display website that allows users to upload photos, tag them, add locations to them and search for them.
 
 ## Date Created
 May, 2018
