@@ -19,9 +19,9 @@ def index (request):
 
 
 
-def about (request):
-    # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
-        return render(request, 'rango/about.html')
+# def about (request):
+#     # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
+#         return render(request, 'rango/about.html')
 
 def show_tag(request, tag_name_slug):
     context_dict = {}
