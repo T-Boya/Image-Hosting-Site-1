@@ -4,7 +4,7 @@
 A photo display website that allows users to upload photos, tag them, add locations and search for them.
 
 ## Date Created
-Friday May, 2018
+May, 2018
 
 ## Host
 Heroku
