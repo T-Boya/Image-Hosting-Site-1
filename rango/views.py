@@ -17,10 +17,6 @@ def index (request):
         context_dict = {'tags': tag_list, 'photos' : photo_list}
     return render(request, 'rango/index.html', context=context_dict)
 
-# def about (request):
-#     # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
-#         return render(request, 'rango/about.html')
-
 def show_tag(request, tag_name_slug):
     context_dict = {}
     try:
@@ -72,3 +68,8 @@ def view_photos(request):
 
 def search(request):
     return render(request, 'rango/search.html',)
+
+# def about (request):
+#     # return HttpResponse('None of your beeswax! <a href = "http://127.0.0.1:8000/rango/">main</a>')
+#         return render(request, 'rango/about.html')
+g
