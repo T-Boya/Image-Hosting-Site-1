@@ -25,6 +25,7 @@ class Photo(models.Model):
     image = models.ImageField(upload_to = 'Stinagram/%Y/%m/%d')
     views = models.IntegerField(default=0)
     pub_date = models.DateTimeField(auto_now_add=True)
+    Location = models.CharField(max_length=128, blank=True)
 
     def __str__(self):
         return self.title

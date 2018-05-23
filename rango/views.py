@@ -54,7 +54,6 @@ def add_photo(request, tag_name_slug):
         tag = Tag.objects.get(slug=tag_name_slug)
     except Tag.DoesNotExist:
         tag = None
-
     form = PhotoForm()
     if request.method == 'POST':
         form = PhotoForm(request.POST)
@@ -74,3 +73,6 @@ def view_photos(request):
     photo_list = Photo.objects.all() 
     context_dict = {'photos' : photo_list}
     return render(request, 'rango/view_photos.html', context=context_dict)
+
+def search(request):
+    return render(request, 'rango/search.html',)

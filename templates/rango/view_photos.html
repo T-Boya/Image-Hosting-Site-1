@@ -6,17 +6,50 @@
              <!-- ROW -->
             <div class="row">
             {% for photo in photos %}
+
+    <!-- MODAL -->
+      <div class="modal fade" id="{{ photo.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{ photo.title }}</h5>
+                  <a href="#" onclick="Copy()"><h6>Copy Photo</h6></a>
+                </div>
+                <div class="modal-body">
+                   <div class = "images" style="overflow: hidden">
+                    <a id = "picture_link" href="{{ photo.image.url }}"><img src="{{ photo.image.url }}" alt="Avatar" style="height:100%" class = "card_img">
+                    </div></a>
+                </div>
+                <script type="text/javascript">
+                    function Copy() {
+                    var Url = document.getElementById("picture_link");
+                    Url = Url.innerHTML;
+                    Url.select();
+                    document.execCommand("copy");
+                    }
+                    </script>
+                <div class="modal-footer">
+                        <p>{{ photo.pub_date }}</p>
+                        <a href="/tag/{{ photo.tag.slug }}"><p>{{ photo.tag.name }}</p></a>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- MODAL -->
+
             <!-- COLUMN 1 -->
             <div class="column" style:"margin-bottom: 30px;">
 
                 <!-- CARD -->
-                <a href=""><div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0);">
+                <a data-toggle="modal" data-target="#{{ photo.id }}Modal"><div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0);">
                     <div class = "images" style="overflow: hidden">
                     <img src="{{ photo.image.url }}" alt="Avatar" style="height:100%" class = "card_img">
                     </div>
                     <div class="container align-self-end" style="min-height: 70px;">
                         <h4>{{ photo.title }},</h5><p>{{ photo.pub_date }}</p>
-                      <h4><a href = "/tag/{{ tag.slug }}"><b>{{ tag.name }}</b></a></h4> 
+                            <a href="/tag/{{ photo.tag.slug }}"><p>{{ photo.tag.name }}</p></a>
+                      <!-- <h4><a href = "/tag/{{ tag.slug }}"><b>{{ tag.name }}</b></a></h4>  -->
                     </div>
                   </div></a>
                   <!-- CARD -->
