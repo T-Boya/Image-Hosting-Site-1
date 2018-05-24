@@ -12,11 +12,6 @@
         {% block stylesheet %}
         {% endblock %}
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <style type"text/css">
-        body {
-            background: url('{% static "/IMG/bg6.jpg" %}');
-        }
-        </style>
     </head>
     <body>
     {% block navbar %}
@@ -29,16 +24,9 @@
                                 alt="calligraphy-fonts" border="0"></a>
                   </div>
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                    <li class=""><a href="{% url 'index' %}">Home</a></li>
                     <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">Tags<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                {% for tag in tags %}
-                                <li>
-                                    <a href = "/tag/{{ tag.slug }}"><p>{{ tag.name }}</p></a>
-                                </li>
-                                {% endfor %}
-                            </ul>
                           </li>
                           <li><form class="navbar-form" role="search" action="{% url 'search' %}">
                             <div class="input-group">

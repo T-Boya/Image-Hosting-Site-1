@@ -42,13 +42,13 @@
             <div class="column" style:"margin-bottom: 30px;">
 
                 <!-- CARD -->
-                <a data-toggle="modal" data-target="#{{ photo.id }}Modal"><div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0);">
-                    <div class = "images" style="overflow: hidden">
+                <a data-toggle="modal" data-target="#{{ photo.id }}Modal"><div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0); overflow: hidden;">
+                    <div class = "images" style="overflow: hidden; height: 30vh;">
                     <img src="{{ photo.image.url }}" alt="Avatar" style="height:100%" class = "card_img">
                     </div>
-                    <div class="container align-self-end" style="min-height: 70px;">
-                        <h4>{{ photo.title }},</h5><p>{{ photo.pub_date }}</p>
-                            <a href="/tag/{{ photo.tag.slug }}"><p>{{ photo.tag.name }}</p></a>
+                    <div class="container align-self-end" style="min-height: 90px; background-color: rgba(216, 204, 199, 0.7);">
+                        <h4>Title: {{ photo.title }},</h5><p> Published {{ photo.pub_date }}</p>
+                        <a href="/tag/{{ photo.tag.slug }}"><p>Tag: {{ photo.tag.name }}</p></a>
                       <!-- <h4><a href = "/tag/{{ tag.slug }}"><b>{{ tag.name }}</b></a></h4>  -->
                     </div>
                   </div></a>
