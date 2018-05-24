@@ -45,7 +45,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 .column {
     float: left;
     width: 22.5%;
-    height: 80vh;
+    height: 50vh;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -66,7 +66,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     transition: 0.3s;
     /* border-radius: 10px; */
     margin-bottom: 30px;
-    height: 90vh;
     /* background-color: rgba(0, 0, 0, 0); */
 }
 
