@@ -1,27 +1,69 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="container">
+<div class="container" style="background: none;">
 
     <div class="row">
-        {{ output }}
+        <h2 style="color: rgb(250, 255, 232);">{{ output }}</h2>
       {% if photos %}
-        <h2 style="text-align:center;margin-top:11vh;font-family: 'Gothic A1'">Found {{ photos|length }} of searched location {{message}}</h2>
+        <h2 style="text-align:center; margin-top:11vh; font-family: 'Gothic A1'; color: rgb(250, 255, 232);">Found {{ photos|length }} of searched location {{message}}</h2>
       {% else %}
-        <h2> Found 0 photos for the search category {{message}}</h2>
+        <h2 style="color: rgb(250, 255, 232);"> Found 0 photos for the search category {{message}}</h2>
       {% endif %}
   
     </div>
-  
-    <div class="row">
-  
     {% if photos %}
+    <div class="row">
       {% for photo in photos %}
-        <div class="col-sm-6 col-md-3"style="text-align:center;margin-top:11vh;font-family: 'Gothic A1'">
-            <h1>{{ photo.title }}</h1>
-            <img src="{{ photo.image.url }}">
+            <!-- COLUMN -->
+    <!-- MODAL -->
+    <div class="modal fade" id="{{ photo.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ photo.title }}</h5>
+            <a href="" onclick="Copy()"><h6>Copy Photo</h6></a>
+          </div>
+          <div class="modal-body">
+             <div class = "images" style="overflow: hidden">
+              <a id = "picture_link" href="{{ photo.image.url }}"><img src="{{ photo.image.url }}" alt="Avatar" style="height:100%" class = "card_img">
+              </div></a>
+          </div>
+          <script type="text/javascript">
+              function Copy() {
+              var Url = document.getElementById("picture_link");
+              Url = Url.innerHTML;
+              Url.select();
+              document.execCommand("copy");
+              }
+              </script>
+          <div class="modal-footer">
+                  <p>{{ photo.pub_date }}</p>
+                  <a href="/search/?location={{ photo.location.title }}"><p>Taken in {{ photo.location.title }}</p></a>
+                  <a href="/tag/{{ photo.tag.slug }}"><p>{{ photo.tag.name }}</p></a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
+      </div>
+    </div>
+  <!-- MODAL -->
+
+      <!-- COLUMN -->
+      <div class="column" style:"margin-bottom: 30px;">
+
+          <!-- CARD -->
+          <a data-toggle="modal" data-target="#{{ photo.id }}Modal"><div class="card" style = "border-radius: 10px; background-color: rgba(0, 0, 0, 0); overflow: hidden;">
+              <div class = "images" style="overflow: hidden; height: 30vh;">
+              <img src="{{ photo.image.url }}" alt="Avatar" style="height:100%" class = "card_img">
+              </div>
+              <div class="container align-self-end" style="min-height: 90px; background-color: rgba(216, 204, 199, 0.7);">
+                  <h4>Title: {{ photo.title }},</h5><p> Published {{ photo.pub_date }}</p>
+                <!-- <h4><a href = "/tag/{{ tag.slug }}"><b>{{ tag.name }}</b></a></h4>  -->
+              </div>
+            </div></a>
+            <!-- CARD -->
       {% endfor %}
+    </div> <!-- END COLUMN -->
     {% endif %}
     </div>
   </div>

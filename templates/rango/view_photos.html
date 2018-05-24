@@ -30,6 +30,7 @@
                     </script>
                 <div class="modal-footer">
                         <p>{{ photo.pub_date }}</p>
+                        <a href="/search/?location={{ photo.location.title }}"><p>Taken in {{ photo.location.title }}</p></a>
                         <a href="/tag/{{ photo.tag.slug }}"><p>{{ photo.tag.name }}</p></a>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>

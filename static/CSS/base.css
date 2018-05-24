@@ -28,7 +28,7 @@ body {
     height: 2vh;
 }
 .navbar.navbar-default.navbar-fixed-top li a{
-    color: rgb(250, 255, 232);
+    color: rgb(161, 104, 84);
 }
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;    
